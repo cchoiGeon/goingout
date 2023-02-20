@@ -1,0 +1,69 @@
+DATABASE 설정
+
+1. 데이터베이스 생성
+CREATE DATABASE going_out;
+
+2. 테이블 생성 
+
+1) 테이블 이름 : register 
+내용 : 
+CREATE TABLE register(
+num INT(11) NOT NULL AUTO_INCREMENT,
+id INT(11) NOT NULL,
+password TEXT NOT NULL,
+sex TEXT NOT NULL,
+age INT(3) NOT NULL,
+campus TEXT NULL,
+selectcontact TEXT NOT NULL,
+contact TEXT NOT NULL,
+student_card_root TEXT NULL,
+matched TEXT NULL,
+selectmatch TEXT NULL,
+selectsex TEXT NULL,
+PRIMARY KEY(num)
+);
+
+2) 테이블 이름 : usetrue
+내용 : 
+CREATE TABLE usetrue(
+num INT(11) NOT NULL AUTO_INCREMENT,
+user_id INT(11) NOT NULL,
+matching TEXT NULL,
+matchingtrue TEXT NULL,
+PRIMARY KEY(num)
+);
+
+3) 테이블 이름 : submituser
+내용 : 
+CREATE TABLE submituser(
+user_id INT(11) NOT NULL,
+user_sex TEXT NOT NULL,
+user_age INT(3) NOT NULL,
+user_campus TEXT NULL,
+user_selectcontact TEXT NOT NULL,
+user_contact TEXT NOT NULL,
+user_selectmatch TEXT NULL,
+user_selectsex TEXT NULL,
+PRIMARY KEY(user_id)
+);
+---------------------------------------------
+
+---------------------------------------------
+사용X
+3) 테이블 이름 : campusall
+내용 CREATE TABLE campusall(
+num INT(11) NOT NULL AUTO_INCREMENT,
+campusname JSON,
+PRIMARY KEY (num)
+);
+
+-----------------------------------------------------
+signup 테이블과 profile 테이블을 합쳐서 데이터 베이스에 저장할까 ?
+
+
+----------------------------
+register에 학교 찾는 건 새로운 창을 띄워서 해보자 ! -> 새로운 창에서 submit을 통해 post로 값을 가져오고 불러 오는 양식
+
+--------------------------------------------------------------
+포켓몬 ? 어떤 케릭터 , 꽃 같은 상징 적인 걸로 상대방의 이미지 ? 를 대체하는 건 어떨까 ? 
+
