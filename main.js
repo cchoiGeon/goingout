@@ -14,7 +14,6 @@ const repeatcss = require('./overlapJS/overlapcss');
 const indexbody = require('./indexJS/indexbody');
 const userlogin = require('./loginJS/login');
 const userregister = require('./registerJS/register');
-const userregister2 = require('./registerJS/register2');
 const userregister3 = require('./registerJS/register3');
 const matching = require('./matchingJS/matching');
 // ROUTER 불러오기
