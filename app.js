@@ -67,21 +67,33 @@ function logintrueindex(req,res){
 // 홈페이지
 server.get('/', (req, res) => {
   logintrueindex(req,res)
-  let count = 0;
-  db.query('SELECT * FROM usetrue',function(err,usetrue){
-    for(let i=0; i<usetrue.length; i++){
-      if(usetrue[i].matching === "true"){
-        count += 1;
-      }
-    }
-    res.render('index',{
-      'loginbox': loginbox,
-      'people': count})
-  });
+  if(req.session.login){
+    db.query('SELECT * FROM register WHERE id=?',[req.session.userid],function(err,register){
+      let user_campus = register[0].campus
+      let man_count = 0;
+      let woman_count = 0;
+      db.query('SELECT * FROM submituser WHERE user_campus=?',[user_campus],function(err,inform){
+        for(let i=0; i<inform.length; i++){
+          if(inform[i].user_sex === 'man'){
+            man_count +=1;
+          }else{
+            woman_count +=1;
+          }
+        }
+        return res.render('index',{'loginbox': loginbox,'campus': user_campus,'man':man_count,'woman':woman_count})
+      })
+    })
+  }else{
+    res.render('index2',{'loginbox': loginbox})
+  }
 })
 //매칭
 server.get('/matching', (req, res) => {
   logintrueindex(req,res)
+  if(!req.session.login){
+    res.write("<script>alert('Please log in')</script>");
+    return res.write("<script>window.location='/login'</script>");
+  }
   db.query('SELECT * FROM usetrue',function(err,usetrue){
     for(let i=0; i<usetrue.length; i++){
       if(parseInt(usetrue[i].user_id) === req.session.userid && usetrue[i].matching === "true"){
@@ -179,12 +191,17 @@ server.post("/register_process",(req,res) =>{
 
 for(let alph in alphlist){
   server.get(`/register2/${alphlist[alph]}`,(req,res) =>{
-    if(!req.session.registerId){
-        return res.redirect('/register')
-    }
+    // if(!req.session.registerId){
+    //     return res.redirect('/register')
+    // }
     let campuslist = `
-    <tbody id="searchcampus">
-        <tr>
+    <tbody>
+      <tr>
+        <th>
+          <input id="searchcampus2"type="text"><button type="button" onclick="searchcampus()">학교 찾기</button>
+        </th>
+      </tr>
+      <tr>
         <th colspan="2">
             <a href="/register2/A"><button type="button">ㄱ</button></a>
             <a href="/register2/B"><button type="button">ㄴ</button></a>
@@ -201,14 +218,15 @@ for(let alph in alphlist){
             <a href="/register2/M"><button type="button">ㅍ</button></a>
             <a href="/register2/N"><button type="button">ㅎ</button></a>
         </th>
-        </tr>
+      </tr>
     `
     const korcampus= require(`./korcampus/korcampus${alphlist[alph]}`)
     korcampus.forEach(function(korcampus){
         campuslist += `
         <tr> 
-        <td colspan="2"><input type="submit" name ="selectcampus" value="${korcampus}"></td>
-        </tr>`
+          <td colspan="2"><input type="submit" name ="selectcampus" id="${korcampus}" value="${korcampus}"></td>
+        </tr>
+        `
     });
     campuslist+= `</tbody>`
     res.render('register2',{'campuslist':campuslist})

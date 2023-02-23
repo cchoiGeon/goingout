@@ -9,12 +9,27 @@
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="styles.css" rel="stylesheet" />
+        <style>
+            table {
+                width: 100%;
+                border-top: 1px solid #444444;
+                border-collapse: collapse;
+            }
+            th, td {
+                border-bottom: 1px solid #444444;
+                border-left: 1px solid #444444;
+                padding: 10px;
+            }
+            th:first-child, td:first-child {
+                border-left: none;
+            }
+        </style>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="./index.html">외출</a>
+            <a class="navbar-brand ps-3" href="/">외출</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -60,6 +75,9 @@
                         <section class="page-section" id="services">
                             <div class="container">
                                 <div class="text-center">
+                                    <br>
+                                    <br>
+                                    <br>
                                     <img src="/img/HUFS.png">
                                     <br>
                                     <br>
@@ -71,33 +89,16 @@
                                 </div>
                                 <div class="row text-center">
                                     <div class="col-md-4">
-                                        <span class="fa-stack fa-4x">                                          
-                                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                                            <!-- 아이콘 변경 필요-->                                     
-                                        </span>
-                                        <h4 class="my-3">연인 매칭</h4>
-                                        <p class="text-muted">현재 참여중인 인원 : <%= people %></p>
+                                        <table>
+                                            <tr>
+                                                <td colspan="2">사용자 학교 : <%- campus%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>남자 인원 : <%- man%></td>
+                                                <td>여자 인원 : <%- woman%></td>
+                                            </tr>
+                                        </table>
                                     </div>
-                                    <div class="col-md-4">
-                                        <span class="fa-stack fa-4x">                                            
-                                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                                            <!-- 아이콘 변경 필요-->
-                                        </span>
-                                        <h4 class="my-3">친구 매칭</h4>
-                                        <p class="text-muted">현재 참여중인 인원</p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <span class="fa-stack fa-4x">
-                                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                                            <!-- 아이콘 변경 필요-->
-                                        </span>
-                                        <h4 class="my-3">그룹 매칭</h4>
-                                        <p class="text-muted">현재 참여중인 인원</p>
-                                    </div>
-                                    <!-- 현재 참여중인 인원 ??? -> 데이터 수 불러와서 표시, js-->
                                 </div>
                             </div>
                         </section>

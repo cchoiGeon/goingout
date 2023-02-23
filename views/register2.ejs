@@ -6,8 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>외출</title>
-        <link href="styles.css" rel="stylesheet" />
         <style>
             table {
                 width: 100%;
@@ -23,6 +21,8 @@
                 border-left: none;
             }
         </style>
+        <title>외출</title>
+        <link href="styles.css" rel="stylesheet" /> <!-- 이거 안 먹는데 왜그런지 모르겠음 ㅋㅋ 데이터가 너무 많아서 그런가 ?-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-primary">
@@ -40,7 +40,8 @@
                                         </p>
                                         <p>
                                             * 본인의 학교로 설정해야 됩니다.<br>          
-                                            * 학교 이름이 나오지 않는다면 문의 주세요.               
+                                            * 학교 이름이 나오지 않는다면 문의 주세요.<br>
+                                            * 본인의 학교를 클릭해주세요
                                         </p>
                                     </div>
                                     <div class="card-body">
@@ -71,17 +72,14 @@
                 </footer>
             </div>
         </div>
-        <script>
-            function search(){
-                let searchcampus = document.getElementById('searchcampus')
-                let campusname = document.getElementById('campusname')
-                let selectcampus = document.getElementsByName("selectcampusall")
-                if(campusname.value === selectcampus.value){
-                    searchcampus.style.display =='none';
-                }
-            }
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="scripts.js"></script>
     </body>
+    <script>
+        function searchcampus(){
+            let searchcampus = document.getElementById('searchcampus2');
+            document.getElementById(searchcampus.value).scrollIntoView({behavior: "smooth",block: "center"})
+        }
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
 </html>
