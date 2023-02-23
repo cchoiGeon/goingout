@@ -10,7 +10,7 @@ const multer = require("multer");
 const path = require("path");
 // 모듈 불러오기
 
-const alphlist = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N'];
+const alphlist = ['A','B','C','D','E','F','G','H','I','J','K','L','M'];
 
 // db 설정
 const db = mysql.createConnection({
@@ -179,7 +179,7 @@ server.post("/register_process",(req,res) =>{
         function(err3,end){
           req.session.registerId = post.id;
           req.session.save(function(){
-            return res.redirect('/register2/A');
+            return res.redirect('/register2_A');
           });
       });
     }else{
@@ -190,10 +190,10 @@ server.post("/register_process",(req,res) =>{
 });
 
 for(let alph in alphlist){
-  server.get(`/register2/${alphlist[alph]}`,(req,res) =>{
-    // if(!req.session.registerId){
-    //     return res.redirect('/register')
-    // }
+  server.get(`/register2_${alphlist[alph]}`,(req,res) =>{
+    if(!req.session.registerId){
+      return res.redirect('/register')
+    }
     let campuslist = `
     <tbody>
       <tr>
@@ -203,20 +203,19 @@ for(let alph in alphlist){
       </tr>
       <tr>
         <th colspan="2">
-            <a href="/register2/A"><button type="button">ㄱ</button></a>
-            <a href="/register2/B"><button type="button">ㄴ</button></a>
-            <a href="/register2/C"><button type="button">ㄷ</button></a>
-            <a href="/register2/D"><button type="button">ㄹ</button></a>
-            <a href="/register2/E"><button type="button">ㅁ</button></a>
-            <a href="/register2/F"><button type="button">ㅂ</button></a>
-            <a href="/register2/G"><button type="button">ㅅ</button></a>
-            <a href="/register2/H"><button type="button">ㅇ</button></a>
-            <a href="/register2/I"><button type="button">ㅈ</button></a>
-            <a href="/register2/J"><button type="button">ㅊ</button></a>
-            <a href="/register2/K"><button type="button">ㅋ</button></a>
-            <a href="/register2/L"><button type="button">ㅌ</button></a>
-            <a href="/register2/M"><button type="button">ㅍ</button></a>
-            <a href="/register2/N"><button type="button">ㅎ</button></a>
+            <a href="/register2_A"><button type="button">ㄱ</button></a>
+            <a href="/register2_B"><button type="button">ㄴ</button></a>
+            <a href="/register2_C"><button type="button">ㄷ</button></a>
+            <a href="/register2_D"><button type="button">ㄹ</button></a>
+            <a href="/register2_E"><button type="button">ㅁ</button></a>
+            <a href="/register2_F"><button type="button">ㅂ</button></a>
+            <a href="/register2_G"><button type="button">ㅅ</button></a>
+            <a href="/register2_H"><button type="button">ㅇ</button></a>
+            <a href="/register2_I"><button type="button">ㅈ</button></a>
+            <a href="/register2_J"><button type="button">ㅊ</button></a>
+            <a href="/register2_K"><button type="button">ㅋ</button></a>
+            <a href="/register2_L"><button type="button">ㅍ</button></a>
+            <a href="/register2_M"><button type="button">ㅎ</button></a>
         </th>
       </tr>
     `
